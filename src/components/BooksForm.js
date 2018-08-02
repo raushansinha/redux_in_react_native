@@ -9,7 +9,7 @@ class BooksForm extends Component {
         super(props);
         //const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = { 
-            bookTitle: 'Useless Placeholder',
+            bookTitle: '',
             //dataSource: ds.cloneWithRows(['row 1', 'row 2']),
         };
     }
@@ -22,7 +22,7 @@ class BooksForm extends Component {
 
     onAddPressed() {
         if(this.state.bookTitle != null && this.state.bookTitle != '') {
-            this.props.addBook({id: this.props.books.length, titte: this.state.bookTitle});
+            this.props.addBook({id: this.props.books.length, title: this.state.bookTitle});
             this.setState({bookTitle: ''})            
         }
     }
@@ -45,8 +45,11 @@ class BooksForm extends Component {
     //   }
 
       renderBooks() {
-        console.log("All Books: " + JSON.stringify(this.props.books));
-        return this.props.books.map(book => <Text key={book.id}> {book.title}</Text>)
+        //console.log("All Books: " + JSON.stringify(this.props.books));
+        return this.props.books.map(book => {
+            //console.log("Title: " + JSON.stringify(book));
+            return <Text key={book.id}> {book.title}</Text>
+        });
       }
 
     render() {
